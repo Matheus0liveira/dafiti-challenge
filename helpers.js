@@ -1,20 +1,18 @@
-function verifyItemIfStartWithPlusOrMinus(item = '') {
-  if (!item.startsWith('-') && !item.startsWith('+'))
-    throw Error(`${item} not valid`);
+function verifyFlavorIfStartWithAddOrRemoveFlag(flavor = '') {
+  if (!flavor.startsWith('-') && !flavor.startsWith('+'))
+    throw Error(`${flavor} not valid`);
 }
 
-function find(data = {}, flavor = '') {
+function findBaseFlavors(data = {}, flavor = '') {
   return data[flavor];
 }
 
 function removeFlagTheFlavor(flavors = [], flag) {
-  return flavors
-    .filter((item) => item.startsWith(flag))
-    .map((i) => i.replace(flag, ''));
+  return flavors.filter((i) => i.startsWith(flag)).map((i) => i.replace(flag, ''));
 }
 
 module.exports = {
-  verifyItemIfStartWithPlusOrMinus,
-  find,
+  verifyFlavorIfStartWithAddOrRemoveFlag,
+  findBaseFlavors,
   removeFlagTheFlavor
 }

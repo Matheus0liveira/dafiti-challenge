@@ -1,16 +1,16 @@
-const data = require("./data.json");
+const data = require("./base.json");
 const {
   removeFlagTheFlavor,
-  find,
-  verifyItemIfStartWithPlusOrMinus,
+  findBaseFlavors,
+  verifyFlavorIfStartWithAddOrRemoveFlag,
 } = require("./helpers");
 
-module.exports = function app(flavor = "", ...items) {
-  items.forEach(verifyItemIfStartWithPlusOrMinus);
+module.exports = function app(flavor = "", ...flavors) {
+  flavors.forEach(verifyFlavorIfStartWithAddOrRemoveFlag);
 
-  const plusItems = [...new Set(removeFlagTheFlavor(items, '+'))];
-  const minusItems = [...new Set(removeFlagTheFlavor(items, '-'))];
-  const list = find(data, flavor);
+  const flavorsToAdd = [...new Set(removeFlagTheFlavor(flavors, '+'))];
+  const flavorsToRemove = [...new Set(removeFlagTheFlavor(flavors, '-'))];
+  const smoothieFlavors = findBaseFlavors(data, flavor);
 
-  return plusItems.concat(list.filter((i) => !minusItems.includes(i))).sort();
+  return flavorsToAdd.concat(smoothieFlavors.filter((i) => !flavorsToRemove.includes(i))).sort();
 };

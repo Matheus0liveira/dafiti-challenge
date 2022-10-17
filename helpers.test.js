@@ -1,5 +1,5 @@
 const assert = require("node:assert");
-const data = require("./base.json");
+const baseFlavors = require("./base.json");
 
 const {
   verifyFlavorIfStartWithAddOrRemoveFlag,
@@ -33,17 +33,17 @@ const {
 // findBaseFlavors
 // Should flavors when pass exist flavor
 {
-  assert.deepStrictEqual(findBaseFlavors(data, "Classic"), data.Classic);
-  assert.deepStrictEqual(findBaseFlavors(data, "Forest Berry"), data["Forest Berry"]);
-  assert.deepStrictEqual(findBaseFlavors(data, "Freezie"), data["Freezie"]);
-  assert.deepStrictEqual(findBaseFlavors(data, "Greenie"), data["Greenie"]);
-  assert.deepStrictEqual(findBaseFlavors(data, "Just Desserts"), data["Just Desserts"]);
-  assert.deepStrictEqual(findBaseFlavors(data, "Vegan Delite"), data["Vegan Delite"]);
+  assert.deepStrictEqual(findBaseFlavors(baseFlavors, "Classic"), baseFlavors.Classic);
+  assert.deepStrictEqual(findBaseFlavors(baseFlavors, "Forest Berry"), baseFlavors["Forest Berry"]);
+  assert.deepStrictEqual(findBaseFlavors(baseFlavors, "Freezie"), baseFlavors["Freezie"]);
+  assert.deepStrictEqual(findBaseFlavors(baseFlavors, "Greenie"), baseFlavors["Greenie"]);
+  assert.deepStrictEqual(findBaseFlavors(baseFlavors, "Just Desserts"), baseFlavors["Just Desserts"]);
+  assert.deepStrictEqual(findBaseFlavors(baseFlavors, "Vegan Delite"), baseFlavors["Vegan Delite"]);
 }
 
 // Should return undefined when pass incorrect flavor
 {
-  const result = findBaseFlavors(data, "Incorrect");
+  const result = findBaseFlavors(baseFlavors, "Incorrect");
   assert.deepStrictEqual(
     result,
     undefined,

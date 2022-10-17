@@ -1,4 +1,4 @@
-const data = require("./base.json");
+const baseFlavors = require("./base.json");
 const {
   removeFlagTheFlavor,
   findBaseFlavors,
@@ -10,7 +10,7 @@ module.exports = function app(flavor = "", ...flavors) {
 
   const flavorsToAdd = [...new Set(removeFlagTheFlavor(flavors, '+'))];
   const flavorsToRemove = [...new Set(removeFlagTheFlavor(flavors, '-'))];
-  const smoothieFlavors = findBaseFlavors(data, flavor);
+  const smoothieFlavors = findBaseFlavors(baseFlavors, flavor);
 
   return flavorsToAdd.concat(smoothieFlavors.filter((i) => !flavorsToRemove.includes(i))).sort();
 };
